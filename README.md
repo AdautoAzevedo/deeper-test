@@ -1,139 +1,86 @@
 # deeper-test
-# User Management System
+# Deeper App
 
-This project consists of a **Flask** backend with **MongoDB** and a **Vue.js** frontend for managing users. The backend provides a REST API for user operations, and the frontend consumes these APIs.
-
----
-
-## 🛠 Prerequisites
-
-Make sure you have the following installed:
-
-- Python 3.8+
-- Node.js 16+
-- npm or yarn
-- MongoDB (running on `localhost:27017`)
+This project consists of a Flask backend and a Vue frontend. Follow the instructions below to set up and run both parts of the application.
 
 ---
 
-## 🔧 Backend Setup (Flask & MongoDB)
+## Backend Setup (Flask + MongoDB)
 
-### 1️⃣ Install dependencies
+### Prerequisites
+- Python 3.x installed
+- MongoDB installed and running on `mongodb://localhost:27017/`
+- `pip` package manager installed
+
+### Install Dependencies
+Navigate to the backend directory and install the required Python dependencies:
 ```sh
-pip install -r requirements.txt
+pip install flask pymongo dataclasses
 ```
 
-### 2️⃣ Start MongoDB
-Ensure MongoDB is running locally on port `27017`.
-If using Docker, run:
-```sh
-docker run -d --name mongodb -p 27017:27017 mongo
-```
-
-### 3️⃣ Run the backend
+### Run the Flask Server
+Start the backend server by running:
 ```sh
 python app.py
 ```
-
-The backend should now be running at `http://127.0.0.1:5000`.
+The API will be available at `http://127.0.0.1:5000/`.
 
 ---
 
-## 🖥 Frontend Setup (Vue.js)
+## Frontend Setup (Vue.js + Vite)
 
-### 1️⃣ Navigate to the frontend directory
-```sh
-cd frontend
-```
+### Prerequisites
+- Node.js installed (preferably latest LTS version)
+- npm (comes with Node.js)
 
-### 2️⃣ Install dependencies
+### Install Dependencies
+Navigate to the frontend directory and install the required dependencies:
 ```sh
 npm install
 ```
 
-### 3️⃣ Start the Vue development server
+### Run the Vue App
+To start the development server, run:
 ```sh
 npm run dev
 ```
+This will start the Vue application at `http://localhost:5173/` (default Vite port).
 
-The frontend should now be accessible at `http://localhost:5173`.
-
----
-
-## 📌 API Endpoints
-
-### 🔹 Get All Users
-```http
-GET /users
-```
-**Response:**
-```json
-[
-  {
-    "username": "john_doe",
-    "roles": ["admin"],
-    "timezone": "UTC",
-    "active": true,
-    "created_ts": 1672531200,
-    "last_updated": "N/A"
-  }
-]
-```
-
-### 🔹 Get a Single User
-```http
-GET /user/{username}
-```
-
-### 🔹 Create a User
-```http
-POST /user
-```
-**Body:**
-```json
-{
-  "username": "john_doe",
-  "password": "securepassword",
-  "roles": ["admin"],
-  "preferences": { "timezone": "UTC" }
-}
-```
-
-### 🔹 Update a User
-```http
-PUT /user/{username}
-```
-
-### 🔹 Delete a User
-```http
-DELETE /user/{username}
-```
-
----
-
-## 🎯 Import Sample Data
-
-As soon as you run the Flask application, the data will be imported to Database.
-
----
-
-## 🚀 Running Both Backend & Frontend
-
-To run both the backend and frontend simultaneously:
-1. Open a terminal and start the backend: `python app.py`
-2. Open another terminal, navigate to `frontend/`, and start Vue: `npm run dev`
-
-Your Vue.js app should now be connected to your Flask API!
-
----
-
-## 🎉 Done!
-
-Now you have a working **Flask + Vue.js** user management system! If you run into any issues, feel free to debug using:
+### Build for Production
+To generate a production build, run:
 ```sh
-# Check for errors in the backend
-python app.py
-
-# Check for Vue errors
-npm run dev
+npm run build
 ```
+
+### Preview Production Build
+To preview the production build locally, run:
+```sh
+npm run preview
+```
+
+---
+
+## Project Structure
+
+```
+/deeper-test
+│── server/   # Flask backend
+│── client/  # Vue frontend
+```
+
+Make sure both backend and frontend are running to use the full functionality of the application.
+
+---
+
+## API Endpoints (Backend)
+- `GET /users` - Retrieve all users
+- `GET /user/<username>` - Retrieve a specific user
+- `POST /user` - Create a new user
+- `PUT /user/<username>` - Update user information
+- `DELETE /user/<username>` - Delete a user
+
+---
+
+## Tech Stack
+- **Backend:** Flask, MongoDB, pymongo
+- **Frontend:** Vue 3, Vue Router, PrimeVue, Axios, Vite
